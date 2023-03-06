@@ -7,38 +7,41 @@ addEventListener('change', (element) => {
     newToDo = element.target.value;
 })
 
-
 const deleteToDoItem = (element) => {
-    console.log(element);
+    console.log(element.target);
+    element.currentTarget.parentNode.remove();
 };
 
 const changeToDoItem = (element) => {
     console.log(element);
-    /*let clickedElement;
     let changedText = 'changed text';
-    clickedElement.innerText = changedText;*/
+    element.target.innerHTML = changedText;
 };
+
 
 const addNewToDo = (element) => {
         element.preventDefault();
 
         let listItem = document.createElement('li');
+        let listItemText = document.createElement('span');
         let listItemCheckbox = document.createElement('input');
-        let listItemChangeButton = document.createElement('button');
+        //let listItemChangeButton = document.createElement('button');
         let listItemDeleteButton = document.createElement('button');
 
-        listItem.innerText = newToDo;
+        listItemText.innerText = newToDo;
         listItemCheckbox.type = 'checkbox';
         listItemDeleteButton.innerText = 'delete';
         listItemDeleteButton.type = 'button';
-        listItemChangeButton.innerText = 'change';
-        listItemChangeButton.type = 'button';
+        //listItemChangeButton.innerText = 'change';
+        //listItemChangeButton.type = 'button';
+        listItem.appendChild(listItemText);
         listItem.appendChild(listItemCheckbox);
         listItem.appendChild(listItemDeleteButton);
-        listItem.appendChild(listItemChangeButton);
+        //listItem.appendChild(listItemChangeButton);
 
-        listItemDeleteButton.addEventListener('click', deleteToDoItem());
-        listItemChangeButton.addEventListener('click', changeToDoItem());
+        listItemDeleteButton.addEventListener('click', deleteToDoItem);
+        //listItemChangeButton.addEventListener('click', changeToDoItem);
+        listItem.addEventListener('click', changeToDoItem);
 
         toDoList.appendChild(listItem);
 
