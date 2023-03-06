@@ -40,6 +40,7 @@ const changeToDoItem = (element) => {
 
     changedTextInput.style.display = 'block';
     listItemChangeButton.style.display = 'block';
+    changedTextInput.focus();
 
     listItemChangeButton.addEventListener('click', setChangedText);
 
@@ -52,7 +53,6 @@ const changeToDoItem = (element) => {
         }
     });
 };
-
 
 const addNewToDo = (element) => {
     element.preventDefault();
@@ -70,13 +70,13 @@ const addNewToDo = (element) => {
     listItemDeleteButton.innerText = 'delete';
     listItemDeleteButton.type = 'button';
     changedTextInput.type = 'text';
-       changedTextInput.required = true;
+    changedTextInput.setAttribute('required', 'required');
     changedTextInput.value = newToDo;
     changedTextInput.name = `change-to-do-input${toDoCounter}`;
     changedTextInput.id = `change-to-do-input${toDoCounter}`;
     changedTextInput.style.display = 'none';
     listItemChangeButton.innerText = 'Confirm';
-    listItemChangeButton.type = 'button';
+    listItemChangeButton.type = 'submit';
     listItemChangeButton.id = `change-to-do-button${toDoCounter}`;
     listItemChangeButton.style.display = 'none';
 
