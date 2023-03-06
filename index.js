@@ -43,8 +43,8 @@ const changeToDoItem = (element) => {
 
     listItemChangeButton.addEventListener('click', setChangedText);
 
-    document.addEventListener('click', function(event) {
-        if (event.target == changedTextInput) { 
+    document.addEventListener('mousedown', function(event) {
+        if (event.target == changedTextInput || event.target == listItemChangeButton) { 
             return
         } else {
             changedTextInput.style.display = 'none';
@@ -70,6 +70,7 @@ const addNewToDo = (element) => {
     listItemDeleteButton.innerText = 'delete';
     listItemDeleteButton.type = 'button';
     changedTextInput.type = 'text';
+       changedTextInput.required = true;
     changedTextInput.value = newToDo;
     changedTextInput.name = `change-to-do-input${toDoCounter}`;
     changedTextInput.id = `change-to-do-input${toDoCounter}`;
@@ -90,7 +91,9 @@ const addNewToDo = (element) => {
 
     toDoList.appendChild(listItem);
 
+    newToDo = '';
     startingInput.value = '';
+    console.log(startingInput.value);
     toDoCounter++;
 }
 
