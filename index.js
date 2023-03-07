@@ -11,21 +11,29 @@ startingInput.addEventListener('change', (element) => {
 })
 
 
+/*fucntion to quickly acces a to-do's counter*/
+
+const getElementHereCounter =  (element) => {
+    let elementHereId = element.currentTarget.parentNode.id;
+    let elementHereCounter = elementHereId.charAt(elementHereId.length-1);
+    return elementHereCounter;
+}
+
+
 /*set to-do item completed status*/
 
 const setCompleted = (element) => {
-    let elementHereId = element.currentTarget.parentNode.id;
-    let elementHereCounter = elementHereId.charAt(elementHereId.length-1);
+    /*get elementHereCounter*/
+    let elementHereCounter = getElementHereCounter(element);
 
     /*change current element status in local storage*/
-
     let localStorageObject = localStorage.getItem(`to-do-${elementHereCounter}`);
     localStorageObject = localStorageObject ? JSON.parse(localStorageObject) : {};
     if (localStorageObject['completed'] == false) {
         localStorageObject['completed']= true;
     } else  {
-        localStorageObject['completed']= false;}
-    //console.log('The localStorageObject completed status is '+ localStorageObject['completed']);
+        localStorageObject['completed']= false;
+    }
     localStorage.setItem(`to-do-${elementHereCounter}`, JSON.stringify(localStorageObject));
     //console.log(localStorage);
 }
@@ -33,10 +41,8 @@ const setCompleted = (element) => {
 /*delete to-do item*/
 
 const deleteToDoItem = (element) => {
-    //console.log(element.target);
-    /*get current element number*/
-    let elementHereId = element.currentTarget.parentNode.id;
-    let elementHereCounter = elementHereId.charAt(elementHereId.length-1);
+    /*get elementHereCounter*/
+    let elementHereCounter = getElementHereCounter(element);
     //console.log(elementHereCounter);
 
     /*remove current element from local storage*/
@@ -44,15 +50,17 @@ const deleteToDoItem = (element) => {
 
     /*remove current element from DOM*/
     element.currentTarget.parentNode.remove();
-    //console.log(localStorage);
+    console.log(localStorage);
 };
 
 /*change to-do item text*/
 
 const setChangedText = (element) => {
     let replacingText = '';
-    let elementHereId = element.currentTarget.parentNode.id;
-    let elementHereCounter = elementHereId.charAt(elementHereId.length - 1);
+
+    /*get elementHereCounter*/
+    let elementHereCounter = getElementHereCounter(element);
+
     let changeInput = document.getElementById(`change-to-do-input${elementHereCounter}`);
     
     replacingText = changeInput.value;
@@ -60,14 +68,11 @@ const setChangedText = (element) => {
     element.target.parentNode.firstChild.addEventListener('dblclick', changeToDoItem);
 
     /*change current element in local storage*/
-
     let localStorageObject = localStorage.getItem(`to-do-${elementHereCounter}`);
     localStorageObject = localStorageObject ? JSON.parse(localStorageObject) : {};
     localStorageObject['name']= replacingText;
-    //console.log('The localStorageObject name is '+ localStorageObject['name']);
     localStorage.setItem(`to-do-${elementHereCounter}`, JSON.stringify(localStorageObject));
     //console.log(localStorage);
-
 
     let changedTextInput = document.getElementById(`change-to-do-input${elementHereCounter}`);
     let listItemChangeButton = document.getElementById(`change-to-do-button${elementHereCounter}`);
@@ -81,7 +86,7 @@ const setChangedText = (element) => {
 const changeToDoItem = (element) => {
     element.currentTarget.removeEventListener('click', changeToDoItem);
 
-    let elementHereId = element.currentTarget.id;
+    let elementHereId = element.currentTarget.parentNode.id;
     let elementHereCounter = elementHereId.charAt(elementHereId.length - 1);
     let changedTextInput = document.getElementById(`change-to-do-input${elementHereCounter}`);
     let listItemChangeButton = document.getElementById(`change-to-do-button${elementHereCounter}`);
@@ -141,7 +146,7 @@ const addNewToDo = (element) => {
 
     /*add delete and change functions*/
     listItemDeleteButton.addEventListener('click', deleteToDoItem);
-    listItem.addEventListener('dblclick', changeToDoItem);
+    listItemText.addEventListener('dblclick', changeToDoItem);
     listItemCheckbox.addEventListener('change', setCompleted)
 
     /*append new to-do item*/
@@ -149,13 +154,9 @@ const addNewToDo = (element) => {
 
     /*set object in local storage*/
     localStorage.setItem(`to-do-${toDoCounter}`, JSON.stringify({name: newToDo, completed: false}));
-    //let test = localStorage.getItem(`to-do-${toDoCounter}`);
-    //console.log(test);
-    //console.log(localStorage);
 
     newToDo = '';
     startingInput.value = '';
-    //console.log(startingInput.value);
     toDoCounter++;
 }
 
