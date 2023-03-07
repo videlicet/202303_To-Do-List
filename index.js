@@ -36,6 +36,14 @@ const setCompleted = (element) => {
     }
     localStorage.setItem(`to-do-${elementHereCounter}`, JSON.stringify(localStorageObject));
     //console.log(localStorage);
+
+    /*strike through span*/
+    if (document.getElementById(`to-do-span-${elementHereCounter}`).style.textDecoration == 'line-through') {
+        document.getElementById(`to-do-span-${elementHereCounter}`).style.textDecoration = 'none';
+        
+    } else {
+        document.getElementById(`to-do-span-${elementHereCounter}`).style.textDecoration = 'line-through';
+    }
 }
 
 /*delete to-do item*/
@@ -77,6 +85,8 @@ const setChangedText = (element) => {
     let changedTextInput = document.getElementById(`change-to-do-input${elementHereCounter}`);
     let listItemChangeButton = document.getElementById(`change-to-do-button${elementHereCounter}`);
 
+    document.getElementById(`to-do-span-${elementHereCounter}`).style.backgroundColor = 'rgb(167, 79, 138)';
+
     changedTextInput.style.display = 'none';
     listItemChangeButton.style.display = 'none';
 }
@@ -95,12 +105,22 @@ const changeToDoItem = (element) => {
     listItemChangeButton.style.display = 'block';
     changedTextInput.focus();
 
+    console.log(1 == 1);
+    /*strike through span*/
+    if (1 == 1) {
+        document.getElementById(`to-do-span-${elementHereCounter}`).style.backgroundColor = 'grey';
+        
+    } else {
+        document.getElementById(`to-do-span-${elementHereCounter}`).style.backgroundColor = 'rgb(167, 79, 138)';
+    }
+
     listItemChangeButton.addEventListener('click', setChangedText);
 
     document.addEventListener('mousedown', function(event) {
         if (event.target == changedTextInput || event.target == listItemChangeButton) { 
             return
         } else {
+            document.getElementById(`to-do-span-${elementHereCounter}`).style.backgroundColor = 'rgb(167, 79, 138)';
             changedTextInput.style.display = 'none';
             listItemChangeButton.style.display = 'none';
         }
@@ -123,6 +143,7 @@ const addNewToDo = (element) => {
     /*set new to-do item properties*/
     listItem.id = `to-do-item${toDoCounter}`;
     listItemText.innerText = newToDo;
+    listItemText.id = `to-do-span-${toDoCounter}`;
     listItemCheckbox.type = 'checkbox';
     listItemDeleteButton.innerText = 'delete';
     listItemDeleteButton.type = 'button';
