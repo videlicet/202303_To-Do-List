@@ -153,7 +153,7 @@ const addNewToDo = (element) => {
     changedTextInput.name = `change-to-do-input${toDoCounter}`;
     changedTextInput.id = `change-to-do-input${toDoCounter}`;
     changedTextInput.style.display = 'none';
-    listItemChangeButton.innerText = 'Confirm';
+    listItemChangeButton.innerText = 'confirm';
     listItemChangeButton.type = 'submit';
     listItemChangeButton.id = `change-to-do-button${toDoCounter}`;
     listItemChangeButton.style.display = 'none';

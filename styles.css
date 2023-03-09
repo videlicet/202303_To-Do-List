@@ -34,12 +34,16 @@ button {
 
 ol {
   list-style-type: none;
+  min-width: 500px;
+  width: 50%;
 }
 
 ol li {
   counter-increment: step-counter;
   position: relative;
   margin: 10px 0 0 0;
+  display: grid;
+  grid-template-columns: 10fr 1fr 1fr;
 }
 
 li::before {
@@ -62,5 +66,11 @@ li span {
   border-radius: 15px;
   background-color: rgb(167, 79, 138);
   color: white;
+  word-wrap: break-word;
+  word-break: break-all;
+}
 
+input[type='checkbox'] {
+  justify-self: center;
+  align-self:center;
 }
