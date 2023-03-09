@@ -27,6 +27,12 @@ input[type='submit'] {
     border: 3px solid lightblue;
 }
 
+input[type='checkbox'] {
+  justify-self: center;
+  align-self: center;
+  width: 4em;
+}
+
 button {
     border-radius: 10px;
     border: 3px solid lightblue;
@@ -62,7 +68,7 @@ li::before {
 }
 
 li span {
-  padding: 0 2em;
+  padding: 0.3em 2em;
   border-radius: 15px;
   background-color: rgb(167, 79, 138);
   color: white;
@@ -70,7 +76,11 @@ li span {
   word-break: break-all;
 }
 
-input[type='checkbox'] {
-  justify-self: center;
-  align-self:center;
+.changed-text-input {
+  margin: 1em 0;
+  padding: 0.3em 2em !important;
+}
+
+.changed-text-input + button {
+  margin: 1em 0;
 }

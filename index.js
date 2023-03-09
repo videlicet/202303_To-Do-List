@@ -69,7 +69,7 @@ const setChangedText = (element) => {
     /*get elementHereCounter*/
     let elementHereCounter = getElementHereCounter(element);
 
-    let changeInput = document.getElementById(`change-to-do-input${elementHereCounter}`);
+    let changeInput = document.getElementById(`change-to-do-input-${elementHereCounter}`);
     
     replacingText = changeInput.value;
     element.target.parentNode.firstChild.innerText = replacingText;
@@ -82,8 +82,8 @@ const setChangedText = (element) => {
     localStorage.setItem(`to-do-${elementHereCounter}`, JSON.stringify(localStorageObject));
     //console.log(localStorage);
 
-    let changedTextInput = document.getElementById(`change-to-do-input${elementHereCounter}`);
-    let listItemChangeButton = document.getElementById(`change-to-do-button${elementHereCounter}`);
+    let changedTextInput = document.getElementById(`change-to-do-input-${elementHereCounter}`);
+    let listItemChangeButton = document.getElementById(`change-to-do-button-${elementHereCounter}`);
 
     document.getElementById(`to-do-span-${elementHereCounter}`).style.backgroundColor = 'rgb(167, 79, 138)';
 
@@ -98,8 +98,8 @@ const changeToDoItem = (element) => {
 
     let elementHereId = element.currentTarget.parentNode.id;
     let elementHereCounter = elementHereId.charAt(elementHereId.length - 1);
-    let changedTextInput = document.getElementById(`change-to-do-input${elementHereCounter}`);
-    let listItemChangeButton = document.getElementById(`change-to-do-button${elementHereCounter}`);
+    let changedTextInput = document.getElementById(`change-to-do-input-${elementHereCounter}`);
+    let listItemChangeButton = document.getElementById(`change-to-do-button-${elementHereCounter}`);
 
     changedTextInput.style.display = 'block';
     listItemChangeButton.style.display = 'block';
@@ -150,12 +150,13 @@ const addNewToDo = (element) => {
     changedTextInput.type = 'text';
     changedTextInput.setAttribute('required', 'required');
     changedTextInput.value = newToDo;
-    changedTextInput.name = `change-to-do-input${toDoCounter}`;
-    changedTextInput.id = `change-to-do-input${toDoCounter}`;
+    changedTextInput.name = `change-to-do-input-${toDoCounter}`;
+    changedTextInput.id = `change-to-do-input-${toDoCounter}`;
+    changedTextInput.className = 'changed-text-input';
     changedTextInput.style.display = 'none';
     listItemChangeButton.innerText = 'confirm';
     listItemChangeButton.type = 'submit';
-    listItemChangeButton.id = `change-to-do-button${toDoCounter}`;
+    listItemChangeButton.id = `change-to-do-button-${toDoCounter}`;
     listItemChangeButton.style.display = 'none';
 
     /*append necessary elemtns to new to-do item*/
